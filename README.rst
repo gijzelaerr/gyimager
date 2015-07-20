@@ -1,7 +1,7 @@
 for now comile with:
 
 ```
-build_ext -I/usr/include/casarest:/usr/include/casacore:lofar/CEP/Imager/LofarFT/include
+python setup.py build_ext -I/usr/include/casarest:/usr/include/casacore:lofar/CEP/Imager/LofarFT/include
 ```
 
 Currently trying to get this to work with:
