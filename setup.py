@@ -5,7 +5,9 @@ from gyimager import __version__
 extensions = [Extension(name='_casaimwrap',
                         sources=['src/casaimwrap/casaimwrap.cc',
                                  'src/casaimwrap/VisBufferStub.cc'],
-                        include_dirs=['src'])]
+                        include_dirs=['src'],
+                        extra_compile_args=['-fopenmp'],)
+              ]
 
 
 
