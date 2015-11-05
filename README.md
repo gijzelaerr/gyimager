@@ -1,3 +1,11 @@
+# gyimager
+
+# Dependencies
+
+ * LOFAR > 2.12 with AWimager enabled
+
+# temporary notes
+
 On Jake for now compile with:
 
 ```
