@@ -1,26 +1,29 @@
 from setuptools import setup, Extension
 from gyimager import __version__
 
-
 extensions = [Extension(name='_casaimwrap',
                         sources=['src/casaimwrap/casaimwrap.cc',
                                  'src/casaimwrap/VisBufferStub.cc'],
                         include_dirs=['src'],
-                        extra_compile_args=['-fopenmp'],)
+                        extra_compile_args=['-fopenmp'],
+                        libraries=['casa_tables', 'casa_images',
+                                   'casa_coordinates', 'casa_ms',
+                                   'casa_msfits', 'boost_python-py27', 'casa_synthesis', 'boost_thread', 'fftw',
+                                   'python2.7', 'awimager2lib'],
+                        )
               ]
 
 
-
 setup(
-    name="pyimager",
+    name="gyimager",
     version=__version__,
     author="Gijs Molenaar",
     author_email="gijs@pythonic.nl",
-    description=("pyimager"),
+    description=("gyimager"),
     license="GPL2",
     keywords="radio astronomy",
     url="http://github.com/radio-astro/pyimager",
-    packages=['gyimager'],
+    packages=['gyimager', 'gyimager.algorithms', 'gyimager.processors'],
     ext_modules=extensions,
     classifiers=[
         "Development Status :: 3 - Alpha",

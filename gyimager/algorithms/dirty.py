@@ -1,8 +1,8 @@
 import numpy
 import pyrap.images
 
-import casaimwrap
-import pyimager.processors as processors
+import _casaimwrap as casaimwrap
+import gyimager.processors as processors
 import util
 
 def dirty(options):

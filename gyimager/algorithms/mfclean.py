@@ -7,8 +7,8 @@ Hogbohm instead of Clark clean in the minor cycle.
 import numpy
 import pyrap.images
 
-import casaimwrap
-import pyimager.processors as processors
+import _casaimwrap as casaimwrap
+import gyimager.processors as processors
 import util
 
 class BeamParameters:

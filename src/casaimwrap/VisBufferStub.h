@@ -28,7 +28,7 @@
 // Hacked VisBuffer implementation that can be used to pass visibility data
 // between Python and CASA FTMachines.
 
-#include <casarest/msvis/MSVis/VisBuffer.h>
+#include <AWImager2/VisBuffer.h>
 #include <casacore/ms/MeasurementSets/MSColumns.h>
 
 namespace LOFAR
@@ -40,7 +40,7 @@ using namespace casa;
 // \addtogroup casaimwrap
 // @{
 
-class VisBufferStub: public VisBuffer
+class VisBufferStub: public LOFAR::LofarFT::VisBuffer
 {
 public:
     VisBufferStub(const MeasurementSet &ms);
@@ -51,7 +51,7 @@ public:
         const Vector<Double> &time,
         const Vector<Double> &timeCentroid,
         const Vector<Bool> &flagRow,
-        const Matrix<Float> &imagingWeight,
+        const Cube<Float> &imagingWeightCube,
         const Cube<Bool> &flag,
         const Cube<Complex> &data,
         Bool newMS = false);
@@ -62,7 +62,7 @@ public:
         const Vector<Double> &time,
         const Vector<Double> &timeCentroid,
         const Vector<Bool> &flagRow,
-        const Matrix<Float> &weight,
+        const Cube<Float> &weight,
         const Cube<Bool> &flag,
         Bool newMS = false);
 
@@ -127,12 +127,13 @@ public:
     virtual Vector<Double>& frequency();
     virtual const Vector<Double>& frequency() const;
     virtual Vector<Double>& lsrFrequency();
+    virtual void lsrFrequency(const Int & spw, Vector<Double>& freq, Bool & convert, const Bool ignoreconv=False) const;
+
     virtual const Vector<Double>& lsrFrequency() const;
     virtual void lsrFrequency(const Int & spw, Vector<Double>& freq,
         Bool & convert) const;
     virtual Int numberCoh () const;
     virtual MDirection & phaseCenter();
-    virtual const MDirection & phaseCenter() const;
     virtual Int polFrame() const;
     virtual Vector<Int>& corrType();
     virtual const Vector<Int>& corrType() const;
@@ -179,6 +180,8 @@ public:
     virtual const Cube<Float>& weightSpectrum() const;
     virtual Matrix<Float>& imagingWeight();
     virtual const Matrix<Float>& imagingWeight() const;
+    virtual Cube<Float>& imagingWeightCube();
+    virtual const Cube<Float>& imagingWeightCube() const;
     virtual Cube<Float>& weightCube();
     virtual Vector<Int> vecIntRange(const MSCalEnums::colDef & calEnum) const;
     virtual Vector<Int> antIdRange() const;
@@ -225,6 +228,7 @@ private:
     MDirection                          itsPhaseCenter;
     Vector<Int>                         itsCorrType;
     Matrix<Float>                       itsImagingWeight;
+    Cube<Float>                         itsImagingWeightCube;
     Vector<Int>                         itsAntenna1;
     Vector<Int>                         itsAntenna2;
     Vector<RigidVector<Double, 3> >     itsUVW;

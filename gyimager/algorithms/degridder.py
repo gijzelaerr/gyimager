@@ -2,8 +2,8 @@ import numpy
 import pyrap.images
 import pyrap.tables
 
-import casaimwrap
-import pyimager.processors as processors
+import _casaimwrap as casaimwrap
+import gyimager.processors as processors
 import util
 
 def degridder(options):
