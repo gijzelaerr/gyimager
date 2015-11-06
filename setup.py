@@ -1,4 +1,4 @@
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from gyimager import __version__
 
 extensions = [Extension(name='_casaimwrap',
@@ -23,7 +23,7 @@ setup(
     license="GPL2",
     keywords="radio astronomy",
     url="http://github.com/radio-astro/pyimager",
-    packages=['gyimager', 'gyimager.algorithms', 'gyimager.processors'],
+    packages=find_packages(),
     ext_modules=extensions,
     classifiers=[
         "Development Status :: 3 - Alpha",
